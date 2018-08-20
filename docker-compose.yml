@@ -1,0 +1,14 @@
+---
+version: '3'
+
+services:
+  ffmpeg:
+    image: ${DOCKER_IMG}:${DOCKER_TAG}
+    container_name: ffmpeg
+    hostname: ffmpeg
+    env_file:
+      - ./work.env
+    volumes:
+      - ${WORK_DIR:-.}:/tmp/workdir
+      - ${PWD}/scripts:/scripts
+    entrypoint: ${ENTRYPOINT:-/scripts/exau.sh}
